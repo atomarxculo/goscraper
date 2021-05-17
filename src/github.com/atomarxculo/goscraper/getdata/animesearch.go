@@ -16,7 +16,7 @@ import (
 /* Esta funcion consulta a la web el anime que le busques,
 además de mostrarte los enlaces en orden y que no haya duplicados*/
 
-func Anime(w http.ResponseWriter, r *http.Request) {
+func Search(w http.ResponseWriter, r *http.Request) {
 	base := "https://jkanime.net/"
 	baseexp := "https://jkanime\\.net/"
 	//Verify the param "URL" exists
