@@ -8,8 +8,9 @@ Esta aplicación pretende ser una API la cual, al pasarle el nombre de un anime,
 - [ ] Frontend en React.
 - [ ] Poder descargar los capitulos directamente del visualizador de video, no de los enlaces que tenga en la sección "Descargas". Esto es debido a problemas con Zippyshare.
 - [ ] Que te muestre todos los enlaces para descargar el anime, en vez de tener que buscar capitulo por capitulo.
-- [ ] Mejorar tiempos de busqueda.
+- [ ] Mejorar tiempos de busqueda. Integrar con Zippkin para medir tiempos.
 - [ ] Testing con animes que tengan muchos capitulos. Las pruebas realizadas son con animes que tienen 24 capitulos máximo.
 - [ ] Sugerencias en vez de busquedas absolutas.
 - [ ] Integración con JDownloader o similar para que mande las URLs de descarga automaticamente al gestor y descargue los capitulos.
+- [ ] Documentación API con Swagger.
 - [ ] Continuará...
