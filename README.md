@@ -1,6 +1,6 @@
 # JKAnime API No oficial
 
-Esta aplicación pretende ser una API la cual, al pasarle el nombre de un anime, busque todos los capitulos disponibles y la opción de descargartelos.
+Esta aplicación pretende ser una API la cual, al pasarle el nombre de un anime, busque todos los capitulos disponibles y la opción de descargartelos, ahorrandote tener que ver miles de anuncios hasta poder ver un capitulo.
 
 **ToDo:**
 
