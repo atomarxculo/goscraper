@@ -21,8 +21,8 @@ func StartServer() {
 
 	http.HandleFunc("/", ping.Ping)
 	http.HandleFunc("/test", getdata.GetData)
-	http.HandleFunc("/search", getdata.Search)
-	http.HandleFunc("/download", getdata.Download)
+	http.HandleFunc("/api/search", getdata.Search)
+	http.HandleFunc("/api/download", getdata.Download)
 
 	log.Println("listening on", ":"+PORT)
 	log.Fatal(http.ListenAndServe(":"+PORT, nil))
