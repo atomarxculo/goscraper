@@ -11,6 +11,8 @@ Esta aplicación pretende ser una API la cual, al pasarle el nombre de un anime,
 - [ ] Mejorar tiempos de busqueda. Integrar con Zippkin para medir tiempos.
 - [ ] Testing con animes que tengan muchos capitulos. Las pruebas realizadas son con animes que tienen 24 capitulos máximo.
 - [ ] Sugerencias en vez de busquedas absolutas.
+- [ ] Manejo de errores.
+- [ ] Genera un fichero de log, además de mostrar más información por consola. 
 - [ ] Integración con JDownloader o similar para que mande las URLs de descarga automaticamente al gestor y descargue los capitulos.
 - [ ] Documentación API con Swagger.
 - [ ] Integración con Redis/Elasticsearch para guardar datos en caché.
