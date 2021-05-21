@@ -13,4 +13,5 @@ Esta aplicación pretende ser una API la cual, al pasarle el nombre de un anime,
 - [ ] Sugerencias en vez de busquedas absolutas.
 - [ ] Integración con JDownloader o similar para que mande las URLs de descarga automaticamente al gestor y descargue los capitulos.
 - [ ] Documentación API con Swagger.
+- [ ] Integración con Redis/Elasticsearch para guardar datos en caché.
 - [ ] Continuará...
