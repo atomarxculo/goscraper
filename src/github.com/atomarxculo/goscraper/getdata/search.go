@@ -44,6 +44,7 @@ func Search(w http.ResponseWriter, r *http.Request) {
 		}
 		result = array.RemoveDuplicates(response)
 		sort.Strings(result)
+		log.Println(response)
 	})
 
 	c.Visit(base)

@@ -14,7 +14,7 @@ import (
 func Download(w http.ResponseWriter, r *http.Request) {
 	base := "https://jkanime.net/"
 	//Verify the param "URL" exists
-	URL := r.URL.Query().Get("download")
+	URL := r.URL.Query().Get("anime")
 	if URL == "" {
 		log.Println("missing URL argument")
 		return
