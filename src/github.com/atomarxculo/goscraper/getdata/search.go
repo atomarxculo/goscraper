@@ -44,10 +44,10 @@ func Search(w http.ResponseWriter, r *http.Request) {
 		}
 		result = array.RemoveDuplicates(response)
 		sort.Strings(result)
-		log.Println(response)
+		log.Println(link)
 	})
 
-	c.Visit(base)
+	c.Visit(base + URL)
 
 	c.OnRequest(func(r *colly.Request) {
 		fmt.Println("Visiting", r.URL.String())

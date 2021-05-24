@@ -23,6 +23,7 @@ func StartServer() {
 	http.HandleFunc("/test", getdata.GetData)
 	http.HandleFunc("/api/search", getdata.Search)
 	http.HandleFunc("/api/download", getdata.Download)
+	http.HandleFunc("/api/view", getdata.Video)
 
 	log.Println("listening on", ":"+PORT)
 	log.Fatal(http.ListenAndServe(":"+PORT, nil))

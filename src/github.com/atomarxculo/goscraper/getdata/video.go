@@ -5,13 +5,15 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"sort"
 
+	"github.com/atomarxculo/goscraper/array"
 	"github.com/gocolly/colly"
 )
 
 /* Muestra los enlaces para descargar del anime que le indiques */
 
-func Download(w http.ResponseWriter, r *http.Request) {
+func Video(w http.ResponseWriter, r *http.Request) {
 	base := "https://jkanime.net/"
 	//Verify the param "URL" exists
 	URL := r.URL.Query().Get("anime")
@@ -24,12 +26,17 @@ func Download(w http.ResponseWriter, r *http.Request) {
 	c := colly.NewCollector()
 
 	var response []string
+	var result []string
 
-	c.OnHTML("td", func(e *colly.HTMLElement) {
-		link := e.ChildAttr("a", "href")
+	c.OnHTML("iframe [src]", func(e *colly.HTMLElement) {
+		link := e.Attr("src")
+		c.Visit(e.Request.AbsoluteURL(link))
 		if link != "" {
 			response = append(response, link)
 		}
+		result = array.RemoveDuplicates(response)
+		sort.Strings(result)
+		log.Println(response)
 	})
 
 	c.Visit(base + URL)
@@ -38,12 +45,12 @@ func Download(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Visiting", r.URL.String())
 	})
 
-	data, err := json.Marshal(response)
+	b, err := json.Marshal(response)
 	if err != nil {
 		log.Println("failed to serialize response:", err)
 		return
 	}
 
 	w.Header().Add("Content-Type", "application/json")
-	w.Write(data)
+	w.Write(b)
 }
