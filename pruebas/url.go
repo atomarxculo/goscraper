@@ -1,4 +1,4 @@
-package main
+package pruebas
 
 import (
 	"fmt"
@@ -6,7 +6,7 @@ import (
 	"github.com/gocolly/colly"
 )
 
-func main() {
+func url() {
 	// Instantiate default collector
 	c := colly.NewCollector(
 		// Visit only root url and urls which start with "e" or "h" on httpbin.org

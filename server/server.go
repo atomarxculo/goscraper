@@ -6,7 +6,7 @@ import (
 	"os"
 
 	"github.com/atomarxculo/goscraper/getdata"
-	"github.com/atomarxculo/goscraper/ping"
+	"github.com/atomarxculo/goscraper/utils"
 )
 
 /* 	Inicia un servidor en un puerto que hayamos definido como variable de entorno
@@ -19,8 +19,9 @@ func StartServer() {
 		PORT = "7171"
 	}
 
-	http.HandleFunc("/", ping.Ping)
+	http.HandleFunc("/", utils.Ping)
 	http.HandleFunc("/test", getdata.GetData)
+	http.HandleFunc("/shutdown", utils.Shutdown)
 	http.HandleFunc("/api/search", getdata.Search)
 	http.HandleFunc("/api/download", getdata.Download)
 	http.HandleFunc("/api/view", getdata.Video)

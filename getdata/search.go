@@ -1,24 +1,16 @@
 package getdata
 
 import (
-	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
-	"regexp"
-	"sort"
-	"strings"
 
-	"github.com/atomarxculo/goscraper/array"
-	"github.com/gocolly/colly"
+	"github.com/PuerkitoBio/goquery"
+	"github.com/geziyor/geziyor"
+	"github.com/geziyor/geziyor/client"
 )
-
-/* Esta funcion consulta a la web el anime que le busques,
-además de mostrarte los enlaces en orden y que no haya duplicados*/
 
 func Search(w http.ResponseWriter, r *http.Request) {
 	base := "https://jkanime.net/"
-	baseexp := "https://jkanime\\.net/"
 	//Verify the param "URL" exists
 	URL := r.URL.Query().Get("anime")
 	if URL == "" {
@@ -27,39 +19,14 @@ func Search(w http.ResponseWriter, r *http.Request) {
 	}
 	log.Println("visiting", base+URL)
 
-	c := colly.NewCollector(
-		colly.URLFilters(
-			regexp.MustCompile(baseexp + "(|" + URL + ".+)$"),
-		),
-	)
-
-	var response []string
-	var result []string
-
-	c.OnHTML("a[href]", func(e *colly.HTMLElement) {
-		link := e.Attr("href")
-		c.Visit(e.Request.AbsoluteURL(link))
-		if strings.Contains(link, URL) {
-			response = append(response, link)
-		}
-		result = array.RemoveDuplicates(response)
-		sort.Strings(result)
-		log.Println(link)
-	})
-
-	c.Visit(base + URL)
-
-	c.OnRequest(func(r *colly.Request) {
-		fmt.Println("Visiting", r.URL.String())
-	})
-
-	data, err := json.Marshal(result)
-	if err != nil {
-		log.Println("failed to serialize response:", err)
-		return
-	}
-
-	w.Header().Add("Content-Type", "application/json")
-	w.Write(data)
-
+	geziyor.NewGeziyor(&geziyor.Options{
+		StartRequestsFunc: func(g *geziyor.Geziyor) {
+			g.GetRendered(base+URL, g.Opt.ParseFunc)
+		},
+		ParseFunc: func(g *geziyor.Geziyor, r *client.Response) {
+			r.HTMLDoc.Find("div.anime__item").Each(func(_ int, s *goquery.Selection) {
+				log.Println(s.Find("a").Text())
+			})
+		},
+	}).Start()
 }
