@@ -5,13 +5,11 @@ import (
 	"net/http"
 	"os"
 	"syscall"
-	"time"
 )
 
 func Shutdown(w http.ResponseWriter, r *http.Request) {
 	pidserver := os.Getpid()
-	log.Println("Apagado")
 	w.Write([]byte("Apagado"))
-	time.Sleep(5 * time.Second)
+	log.Println("Apagado")
 	syscall.Kill(pidserver, 9)
 }
